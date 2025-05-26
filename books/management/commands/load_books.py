@@ -1,6 +1,7 @@
 from books.models import Book, Author
 from django.core.management.base import BaseCommand
 import random
+import uuid
 class Command(BaseCommand):
     help = 'Create Dummy Data'
 
@@ -18,7 +19,7 @@ class Command(BaseCommand):
             books = Book.objects.create(
                 title=f"Book {i}",
                 author=author,
-                isbn=f"ISBN {i}",
+                isbn=f"{str(uuid.uuid4())[:13]}",
                 page_count=i * 50,
                 is_available=True,
             )
