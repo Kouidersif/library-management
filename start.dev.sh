@@ -18,3 +18,5 @@ echo "Executing unit tests..."
 docker-compose exec web python manage.py test
 
 echo "\033[92mTests passed\033[0m"
+
+echo "Server started at http://localhost:8000/docs/"
