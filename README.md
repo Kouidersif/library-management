@@ -31,6 +31,11 @@ A Django-based Books Library Management System containerized with Docker.
    docker-compose exec web python manage.py createsuperuser
    ```
 
+5. Run tests:
+   ```bash
+   docker-compose exec web python manage.py test
+   ```
+
 ## Development with Docker
 
 ### Common Docker Commands
