@@ -1,5 +1,5 @@
 """
-WSGI config for BookLibrariBackend project.
+WSGI config for BookLibraryBackend project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'BookLibrariBackend.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'BookLibraryBackend.settings')
 
 application = get_wsgi_application()

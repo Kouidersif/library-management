@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from BookLibrariBackend.models import BaseModel
+from BookLibraryBackend.models import BaseModel
 from books.managers import BooksQuerysetManager, LoansQuerysetManager
 
 class Author(BaseModel):

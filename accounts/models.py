@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from BookLibrariBackend.models import BaseModel
+from BookLibraryBackend.models import BaseModel
 
 
 

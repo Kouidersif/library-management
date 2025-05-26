@@ -45,7 +45,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'BookLibrariBackend.urls'
+ROOT_URLCONF = 'BookLibraryBackend.urls'
 
 TEMPLATES = [
     {
@@ -62,7 +62,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'BookLibrariBackend.wsgi.application'
+WSGI_APPLICATION = 'BookLibraryBackend.wsgi.application'
 
 
 # Database
