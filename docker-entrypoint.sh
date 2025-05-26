@@ -16,8 +16,12 @@ python manage.py makemigrations
 python manage.py migrate --noinput
 
 # Collect static files
-echo "Collecting static files..."
+echo "Collecting static files..." # for production
 # python manage.py collectstatic --noinput
+
+# Create initial data
+echo "Creating initial data..."
+python manage.py load_books
 
 # Start server
 echo "Starting server..."

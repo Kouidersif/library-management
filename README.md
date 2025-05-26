@@ -21,7 +21,12 @@ A Django-based Books Library Management System containerized with Docker.
    ```
    The application will be available at http://localhost:8000
 
-3. Create a superuser (in a new terminal): 
+3. Once you run the application, dummy books will be created for you otherwise run:
+   ```bash
+   docker-compose exec web python manage.py load_books
+   ```
+
+4. Create a superuser (in a new terminal): 
    ```bash
    docker-compose exec web python manage.py createsuperuser
    ```
@@ -67,18 +72,35 @@ A Django-based Books Library Management System containerized with Docker.
 
 ## API Endpoints
 
-- `/api/accounts/` - User account management
 - `/admin/` - Django admin interface
+- `/api/accounts/` - User account management
+- `/api/books/` - Book management
+
+## Features
+
+- User App:
+  - User Registration
+  - User Login
+  - User Token Refresh
+  - User Logout
+- Book App:
+  - Books Listing
+  - Book Details
+  - Book Loaning
+  - Book Return or End Loan
+  - Admin Actions to end loans
+  - Custom queryset managers for `Books` and `Loan` models to make queries easier
+
 
 ## Environment Variables
 
 Create a `.env` file in the root directory with the following variables (for local development):
 
 ```
-SECRET_KEY=
-DEBUG=
-POSTGRES_DB=
-POSTGRES_USER=
-POSTGRES_PASSWORD=
-DB_HOST=
+SECRET_KEY=changeme
+DEBUG=True/False
+POSTGRES_DB=db
+POSTGRES_USER=changeme
+POSTGRES_PASSWORD=changeme
+DB_HOST=5432
 ```

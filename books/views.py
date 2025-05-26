@@ -4,7 +4,10 @@ from books.serializers import BookSerializer, LoanSerializer, LoanBookSerializer
 from books.models import Book, Loan, Author
 from django.utils import timezone
 from drf_yasg.inspectors import SwaggerAutoSchema
-
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 class BooksSchema(SwaggerAutoSchema):
     def get_tags(self, operation_keys=None):
@@ -16,6 +19,21 @@ class BookListView(generics.ListAPIView):
     serializer_class = BookSerializer
     permission_classes = [permissions.AllowAny]
     swagger_schema = BooksSchema
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    filterset_fields = ["is_available"]
+    search_fields = ["title"]
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter(
+                "is_available",
+                openapi.IN_QUERY,
+                description="Filter by is_available",
+                type=openapi.TYPE_BOOLEAN,
+            )
+        ]
+    )
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
 
 
 class BookDetailView(generics.RetrieveAPIView):
