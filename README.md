@@ -7,7 +7,16 @@ A Django-based Books Library Management System containerized with Docker.
 - Docker
 - Docker Compose
 
-## Quick Start
+
+## Fastest way to get started
+
+Run the following command ( You may need to run `chmod +x start.dev.sh`):
+
+```bash
+./start.dev.sh
+```
+
+## Manual Setup
 
 1. Clone the repository:
    ```bash
@@ -17,7 +26,7 @@ A Django-based Books Library Management System containerized with Docker.
 
 2. Start the application:
    ```bash
-   docker-compose up --build
+   docker-compose up --build -d
    ```
    The application API documentation will be available at http://localhost:8000/docs/
 
@@ -26,7 +35,7 @@ A Django-based Books Library Management System containerized with Docker.
    docker-compose exec web python manage.py load_books
    ```
 
-4. Create a superuser (in a new terminal): 
+4. Create a superuser: 
    ```bash
    docker-compose exec web python manage.py createsuperuser
    ```
