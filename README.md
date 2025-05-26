@@ -21,7 +21,7 @@ A Django-based Books Library Management System containerized with Docker.
    ```
    The application will be available at http://localhost:8000
 
-3. Create a superuser (in a new terminal):
+3. Create a superuser (in a new terminal): 
    ```bash
    docker-compose exec web python manage.py createsuperuser
    ```
