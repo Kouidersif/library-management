@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from BookLibrariBackend.models import BaseModel
-
+from books.managers import BooksQuerysetManager, LoansQuerysetManager
 
 class Author(BaseModel):
     first_name = models.CharField(max_length=100, help_text="Enter the author's first name.")
@@ -34,6 +34,8 @@ class Book(BaseModel):
     )
     page_count = models.PositiveIntegerField(help_text="Enter the number of pages.")
     is_available = models.BooleanField(default=True)
+    
+    objects = BooksQuerysetManager.as_manager()
 
     class Meta:
         ordering = ["title"]
@@ -63,6 +65,8 @@ class Loan(BaseModel):
     is_returned = models.BooleanField(
         default=False, help_text="Has the book been returned?"
     )
+    
+    objects = LoansQuerysetManager.as_manager()
     
     class Meta:
         verbose_name = "Loan"
