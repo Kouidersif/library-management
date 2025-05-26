@@ -54,11 +54,12 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data: dict):
         instance =  super().create(validated_data)
+        password = validated_data.pop('password', None)
+        instance.set_password(password)
+        instance.save()
         return instance
 
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        return representation
+
 
 
 
@@ -88,6 +89,7 @@ class UserLoginSerializer(serializers.Serializer):
 
         attrs["user"] = user
         return attrs
+    
 
     def to_representation(self, instance):
         user: User = self.validated_data.get("user")
@@ -98,8 +100,18 @@ class UserLoginSerializer(serializers.Serializer):
             "last_name": user.last_name if user.last_name else "",
             "refresh": str(token),
             "access": str(token.access_token),
-            "is_onboarded": user.is_onboarded
+            "id": user.id,
         }
         return representation
 
 
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            "email",
+            "first_name",
+            "last_name",
+        ]
