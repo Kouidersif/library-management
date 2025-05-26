@@ -19,7 +19,7 @@ A Django-based Books Library Management System containerized with Docker.
    ```bash
    docker-compose up --build
    ```
-   The application will be available at http://localhost:8000
+   The application API documentation will be available at http://localhost:8000/docs/
 
 3. Once you run the application, dummy books will be created for you otherwise run:
    ```bash
