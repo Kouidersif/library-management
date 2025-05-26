@@ -85,6 +85,8 @@ A Django-based Books Library Management System containerized with Docker.
   - User Logout
 - Book App:
   - Books Listing
+  - Books Filtering and Search
+  - Books Listing Pagination
   - Book Details
   - Book Loaning
   - Book Return or End Loan
