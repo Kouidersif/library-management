@@ -6,9 +6,16 @@ from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from rest_framework_simplejwt.views import TokenRefreshView
+from drf_yasg.inspectors import SwaggerAutoSchema
+
 
 UserModel = get_user_model()
 
+
+
+class AccountsSchema(SwaggerAutoSchema):
+    def get_tags(self, operation_keys=None):
+        return ['Accounts API']
 
 class UserRegisterAPIView(generics.CreateAPIView):
     """
@@ -17,6 +24,7 @@ class UserRegisterAPIView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
     serializer_class = CreateUserSerializer
     queryset = UserModel
+    swagger_schema = AccountsSchema
     
 
 
@@ -26,6 +34,7 @@ class LoginAPIView(generics.GenericAPIView):
     """
     serializer_class = UserLoginSerializer
     permission_classes = [permissions.AllowAny]
+    swagger_schema = AccountsSchema
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
@@ -38,7 +47,10 @@ class LoginAPIView(generics.GenericAPIView):
 
 
 class LogoutView(generics.GenericAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    swagger_schema = AccountsSchema
     def post(self, request):
         try:
             refresh_token = request.data.get("refresh", None)
@@ -57,6 +69,7 @@ class LogoutView(generics.GenericAPIView):
 class RefreshUserTokenAPIView(TokenRefreshView):
     "Custom token refresher to check whether user is active or no before issuing a new token"
     permission_classes = [ permissions.AllowAny ]
+    swagger_schema = AccountsSchema
     def post(self, request, *args, **kwargs):
         data = request.data
         serializer = self.get_serializer(data=data)
